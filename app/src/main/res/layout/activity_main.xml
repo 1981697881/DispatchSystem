@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".module.MainActivity"
+    tools:ignore="MissingPrefix">
+
+    <FrameLayout
+        android:id="@+id/flContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/llHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="#E5E5E5"
+        app:layout_constraintBottom_toTopOf="@+id/llHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/llHome"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:descendantFocusability="blocksDescendants"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/llPickUp"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/ivHome"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            app:bl_selected_drawable="@mipmap/ic_main_tab_home_light"
+            app:bl_unSelected_drawable="@mipmap/ic_main_tab_home_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="首页"
+            android:textColor="#282828"
+            android:textSize="10dp"
+            app:bl_selected_textColor="#282828"
+            app:bl_unSelected_textColor="#ACB2BD" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llPickUp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:descendantFocusability="blocksDescendants"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/llMine"
+        app:layout_constraintStart_toEndOf="@id/llHome">
+
+        <ImageView
+            android:id="@+id/ivPickUp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            app:bl_selected_drawable="@mipmap/ic_main_tab_good_light"
+            app:bl_unSelected_drawable="@mipmap/ic_main_tab_good_dark" />
+
+        <TextView
+            android:id="@+id/tvPickUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:includeFontPadding="false"
+            android:text="揽件"
+            android:textColor="#282828"
+            android:textSize="10dp"
+            app:bl_selected_textColor="#282828"
+            app:bl_unSelected_textColor="#ACB2BD" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewDot"
+        android:layout_width="9dp"
+        android:layout_height="9dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginBottom="34dp"
+        android:visibility="gone"
+        app:bl_corners_radius="50dp"
+        app:bl_solid_color="#FF0000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/llMine"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:descendantFocusability="blocksDescendants"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/llPickUp">
+
+        <ImageView
+            android:id="@+id/ivMine"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            app:bl_selected_drawable="@mipmap/ic_main_tab_mine_light"
+            app:bl_unSelected_drawable="@mipmap/ic_main_tab_mine_dark" />
+
+        <TextView
+            android:id="@+id/tvMine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:includeFontPadding="false"
+            android:text="我的"
+            android:textSize="10dp"
+            app:bl_selected_textColor="#282828"
+            app:bl_unSelected_textColor="#ACB2BD" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/clRoot"
+    android:background="@color/white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="20dp"
+        android:background="#F5F5F5"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/ivStart"
+        android:layout_width="19dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="12dp"
+        android:src="@mipmap/ic_star"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"
+        android:layout_height="19dp" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        app:layout_goneMarginStart="12dp"
+        android:layout_marginTop="20dp"
+        android:includeFontPadding="false"
+        android:text="花园"
+        android:textColor="#282828"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/ivStart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:src="@mipmap/ic_arrow_right"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitle" />
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/tvPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:includeFontPadding="false"
+            android:text="派件"
+            android:textColor="#999999"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <TextView
+            android:id="@+id/tvPostHasDeliveryCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="10dp"
+            android:includeFontPadding="false"
+            android:text="0"
+            android:textColor="#DE1111"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tvPost"
+            app:layout_constraintTop_toBottomOf="@id/tvPost" />
+
+        <TextView
+            android:id="@+id/tvPostAllDeliveryCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:layout_marginTop="20dp"
+            android:text="/20"
+            android:textColor="#282828"
+            android:textSize="16dp"
+            app:layout_constraintStart_toEndOf="@id/tvPostHasDeliveryCount"
+            app:layout_constraintTop_toTopOf="@id/tvPostHasDeliveryCount" />
+
+        <TextView
+            android:id="@+id/tvReceiver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="112dp"
+            android:layout_marginTop="20dp"
+            android:includeFontPadding="false"
+            android:text="揽件"
+            android:textColor="#999999"
+            android:textSize="14dp"
+            app:layout_constraintStart_toEndOf="@id/tvPost"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+
+        <TextView
+            android:id="@+id/tvPostHasReceiveCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="5dp"
+            android:includeFontPadding="false"
+            android:text="0"
+            android:textColor="#DE1111"
+            android:textSize="16dp"
+            app:layout_constraintStart_toStartOf="@id/tvReceiver"
+            app:layout_constraintTop_toBottomOf="@id/tvReceiver" />
+
+        <TextView
+            android:id="@+id/tvPostAllReceiveCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:layout_marginTop="20dp"
+            android:text="/20"
+            android:textColor="#282828"
+            android:textSize="16dp"
+            app:layout_constraintStart_toEndOf="@id/tvPostHasReceiveCount"
+            app:layout_constraintTop_toTopOf="@id/tvPostHasReceiveCount" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

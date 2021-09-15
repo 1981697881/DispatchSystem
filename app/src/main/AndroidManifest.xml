@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dispatch.system">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- SDCard读写 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <application
+        android:name=".base.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/app"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/app"
+        android:supportsRtl="true"
+        android:testOnly="false"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".module.login.LoginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind">
+        </activity>
+        <activity
+            android:name=".module.WelcomeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".module.MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.home.ui.BuildingTaskListActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+        <activity
+            android:name=".module.home.ui.BuildingDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+        <activity
+            android:name=".module.home.ui.BuildingDetailTimeOutActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+        <activity
+            android:name=".module.home.ui.ErrorPartReasonActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@style/MyDialogStyle" />
+        <activity
+            android:name=".module.home.ui.HandSignActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@style/MyDialogStyle" />
+        <activity
+            android:name=".module.home.ui.ScanResultActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@style/MyDialogStyle"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".module.home.ui.SortScanActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".module.home.ui.PickUpScanActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".module.home.ui.ScanErrorResultActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@style/MyDialogStyle"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".module.home.ui.RegisterAreaDialogActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@style/MyDialogStyle"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".module.home.ui.ErrorScanActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".module.common.PickUpDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+        <activity
+            android:name=".module.home.ui.DeliveryDetailChangeTimeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@style/MyDialogStyle" />
+        <activity
+            android:name=".module.pick.PickScanCheckResultActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@style/MyDialogStyle" />
+        <activity
+            android:name=".module.pick.PickScanSubmitResultActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@style/MyDialogStyle" />
+        <activity
+            android:name=".module.home.ui.ExpressDialogActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@style/MyDialogStyle" />
+        <activity
+            android:name=".module.pick.PickInputReceiverMessageActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind"
+            android:theme="@style/MyDialogStyle" />
+    </application>
+
+</manifest>

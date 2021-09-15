@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".module.MainActivity"
+    tools:ignore="MissingPrefix">
+
+    <View
+        android:id="@+id/viewTopColor"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:background="#FF9F1E"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivTopPic"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_home_top_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewTopColor" />
+
+    <!-- 分拣扫描 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSortScan"
+        android:layout_width="0dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="100dp"
+        app:bl_solid_color="@color/white"
+        app:bl_stroke_color="#1AFF9F1E"
+        app:bl_stroke_position="bottom"
+        app:bl_stroke_width="4dp"
+        app:layout_constraintEnd_toStartOf="@id/clPickUpScan"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewTopColor">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/ic_home_sort"
+            android:drawablePadding="17dp"
+            android:includeFontPadding="false"
+            android:text="分拣扫描"
+            android:textColor="#282828"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 揽件扫描 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clPickUpScan"
+        android:layout_width="0dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="100dp"
+        app:bl_solid_color="@color/white"
+        app:bl_stroke_color="#1AFF9F1E"
+        app:bl_stroke_position="bottom"
+        app:bl_stroke_width="4dp"
+        app:layout_constraintEnd_toStartOf="@id/clErrorScan"
+        app:layout_constraintStart_toEndOf="@id/clSortScan"
+        app:layout_constraintTop_toBottomOf="@id/viewTopColor">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/ic_home_pick_up"
+            android:drawablePadding="17dp"
+            android:includeFontPadding="false"
+            android:text="揽件扫描"
+            android:textColor="#282828"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 异常件扫描 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clErrorScan"
+        android:layout_width="0dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="12dp"
+        app:bl_solid_color="@color/white"
+        app:bl_stroke_color="#1AFF9F1E"
+        app:bl_stroke_position="bottom"
+        app:bl_stroke_width="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/clPickUpScan"
+        app:layout_constraintTop_toBottomOf="@id/viewTopColor">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@mipmap/ic_home_error"
+            android:drawablePadding="17dp"
+            android:includeFontPadding="false"
+            android:text="异常件扫描"
+            android:textColor="#282828"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvTabMineWork"
+        android:layout_width="126dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="20dp"
+        android:gravity="left|bottom"
+        android:includeFontPadding="false"
+        android:text="我的今日任务"
+        android:textColor="#DE1111"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clSortScan" />
+
+    <TextView
+        android:id="@+id/tvTabPostWork"
+        android:layout_width="126dp"
+        android:layout_height="30dp"
+        android:gravity="left|bottom"
+        android:includeFontPadding="false"
+        android:text="驿站今日任务"
+        android:textColor="#666666"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tvTabMineWork"
+        app:layout_constraintStart_toEndOf="@id/tvTabMineWork"
+        app:layout_constraintTop_toTopOf="@id/tvTabMineWork" />
+
+    <TextView
+        android:id="@+id/tvTabOverdueWork"
+        android:layout_width="126dp"
+        android:layout_height="30dp"
+        android:gravity="left|bottom"
+        android:includeFontPadding="false"
+        android:text="我的未完成任务"
+        android:textColor="#666666"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tvTabPostWork"
+        app:layout_constraintStart_toEndOf="@id/tvTabPostWork"
+        app:layout_constraintTop_toTopOf="@id/tvTabPostWork" />
+
+    <ImageView
+        android:id="@+id/viewIndicator"
+        android:layout_width="40dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="5dp"
+        android:background="#DE1111"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTabMineWork" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewIndicator" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

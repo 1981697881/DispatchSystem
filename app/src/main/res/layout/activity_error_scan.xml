@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".module.home.ui.SortScanActivity"
+    tools:ignore="MissingPrefix">
+
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="40dp"
+        android:layout_height="55dp"
+        android:paddingStart="10dp"
+        android:paddingTop="18dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="18dp"
+        android:src="@mipmap/ic_back"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="异常件扫描"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_qrcode_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <cn.bingoogolapple.qrcode.zxing.ZXingView
+        android:id="@+id/mZXingView"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/etInputExpressNum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:qrcv_animTime="1000"
+        app:qrcv_borderColor="@android:color/white"
+        app:qrcv_borderSize="1dp"
+        app:qrcv_cornerColor="@color/colorPrimaryDark"
+        app:qrcv_cornerLength="20dp"
+        app:qrcv_cornerSize="3dp"
+        app:qrcv_maskColor="#33FFFFFF"
+        app:qrcv_rectWidth="200dp"
+        app:qrcv_scanLineColor="@color/colorPrimaryDark"
+        app:qrcv_scanLineSize="1dp"
+        app:qrcv_topOffset="90dp" />
+
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="20dp"
+        android:background="#80000000"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="对准条形码进行扫描"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="@id/mZXingView"
+        app:layout_constraintStart_toStartOf="@id/mZXingView"
+        app:layout_constraintTop_toTopOf="@id/mZXingView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_scan_left_bottom"
+        app:layout_constraintBottom_toBottomOf="@id/mZXingView"
+        app:layout_constraintStart_toStartOf="@id/mZXingView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_scan_right_top"
+        app:layout_constraintEnd_toEndOf="@id/mZXingView"
+        app:layout_constraintTop_toTopOf="@id/mZXingView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_scan_right_bottom"
+        app:layout_constraintBottom_toBottomOf="@id/mZXingView"
+        app:layout_constraintEnd_toEndOf="@id/mZXingView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_scan_left_top"
+        app:layout_constraintStart_toStartOf="@id/mZXingView"
+        app:layout_constraintTop_toTopOf="@id/mZXingView" />
+
+
+    <EditText
+        android:id="@+id/etInputExpressNum"
+        android:layout_width="300dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="50dp"
+        android:background="#EAEAEA"
+        android:gravity="center"
+        android:hint="手动输入快递单号"
+        android:textColorHint="#999999"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mZXingView" />
+
+    <com.noober.background.view.BLTextView
+        android:id="@+id/tvConfirm"
+        android:layout_width="160dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="确认快递单号"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:bl_corners_radius="5dp"
+        app:bl_solid_color="#DE1111"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etInputExpressNum" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

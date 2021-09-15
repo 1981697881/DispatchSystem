@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="12dp"
+    android:layout_marginBottom="5dp"
+    android:id="@+id/clRoot"
+    android:layout_marginEnd="12dp"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/ivPoster"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_poster"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPosterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:includeFontPadding="false"
+        android:text="张小凡"
+        android:textColor="#282828"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ivPoster"
+        app:layout_constraintStart_toEndOf="@id/ivPoster"
+        app:layout_constraintTop_toTopOf="@id/ivPoster" />
+
+    <TextView
+        android:id="@+id/tvPosterPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:includeFontPadding="false"
+        android:text="12300000000"
+        android:textColor="#282828"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tvPosterName"
+        app:layout_constraintStart_toEndOf="@id/tvPosterName"
+        app:layout_constraintTop_toTopOf="@id/tvPosterName" />
+
+    <ImageView
+        android:id="@+id/ivReceiver"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="18dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_receiver"
+        app:layout_constraintEnd_toEndOf="@id/ivPoster"
+        app:layout_constraintStart_toStartOf="@id/ivPoster"
+        app:layout_constraintTop_toBottomOf="@id/ivPoster"
+        app:layout_goneMarginTop="12.5dp" />
+
+    <TextView
+        android:id="@+id/tvReceiverName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:includeFontPadding="false"
+        android:text="张小凡"
+        android:textColor="#282828"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ivReceiver"
+        app:layout_constraintStart_toEndOf="@id/ivReceiver"
+        app:layout_constraintTop_toTopOf="@id/ivReceiver" />
+
+    <TextView
+        android:id="@+id/tvReceiverPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:includeFontPadding="false"
+        android:text="12300000000"
+        android:textColor="#282828"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tvReceiverName"
+        app:layout_constraintStart_toEndOf="@id/tvReceiverName"
+        app:layout_constraintTop_toTopOf="@id/tvReceiverName" />
+
+    <LinearLayout
+        android:id="@+id/llTime"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toStartOf="@id/ivReceiver"
+        app:layout_constraintTop_toBottomOf="@id/ivReceiver"
+        android:orientation="vertical"
+        android:layout_height="wrap_content" >
+
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:includeFontPadding="false"
+            android:text="广东省xxxxxxxxxx"
+            android:textColor="#999999"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="@id/ivReceiver"
+            app:layout_constraintTop_toBottomOf="@id/ivReceiver" />
+
+        <TextView
+            android:id="@+id/tvAddTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:includeFontPadding="false"
+            android:text="入库时间："
+            android:textColor="#999999"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="@id/ivReceiver"
+            app:layout_constraintTop_toBottomOf="@id/tvAddress" />
+
+        <TextView
+            android:id="@+id/tvOrderTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:includeFontPadding="false"
+            android:text="预约时间："
+            android:textColor="#999999"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="@id/ivReceiver"
+            app:layout_constraintTop_toBottomOf="@id/tvAddTime" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="#EAEAEA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llTime" />
+
+    <!-- 时间 -->
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:drawableStart="@mipmap/ic_mine_pick_up_time"
+        android:drawablePadding="14dp"
+        android:includeFontPadding="false"
+        android:text="预约时间：10:00~11:00"
+        android:textColor="#666666"
+        android:textSize="14dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/viewDivider"
+        app:layout_constraintTop_toBottomOf="@id/viewDivider" />
+
+    <TextView
+        android:id="@+id/tvExpress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:drawableStart="@mipmap/ic_mine_pick_up_time"
+        android:drawablePadding="14dp"
+        android:includeFontPadding="false"
+        android:text="顺丰快递 SF1123154564"
+        android:textColor="#666666"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toTopOf="@id/tvPay"
+        app:layout_constraintStart_toStartOf="@id/viewDivider"
+        app:layout_constraintTop_toBottomOf="@id/viewDivider"
+        app:layout_goneMarginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/tvPay"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="#FFF9EF"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:paddingStart="20dp"
+        android:text="等待用户支付 12元"
+        tools:visibility="invisible"
+        android:textColor="#E88500"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvExpress" />
+
+    <TextView
+        android:id="@+id/tvMark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#DE1111"
+        android:includeFontPadding="false"
+        android:paddingStart="11dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="11dp"
+        android:paddingBottom="6dp"
+        android:text="待上门取件"
+        android:textColor="@color/white"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 自揽件特殊显示 -->
+    <TextView
+        android:id="@+id/tvMinePickUpExpress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:includeFontPadding="false"
+        android:text="顺丰快递 SF132454456465"
+        android:textColor="#282828"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMinePickUpTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:includeFontPadding="false"
+        android:text="预约时间："
+        android:textColor="#999999"
+        android:textSize="14dp"
+        app:layout_constraintStart_toStartOf="@id/tvMinePickUpExpress"
+        app:layout_constraintTop_toBottomOf="@id/tvMinePickUpExpress" />
+
+    <TextView
+        android:id="@+id/tvMinePickUpPay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:includeFontPadding="false"
+        android:text="已收款 12元"
+        android:textColor="#999999"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvMinePickUpExpress"
+        app:layout_constraintTop_toBottomOf="@id/tvMinePickUpTime" />
+
+    <!-- 自揽件group -->
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupMinePickUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="tvMinePickUpPay,tvMinePickUpExpress,tvMinePickUpTime" />
+
+<!--    <androidx.constraintlayout.widget.Group-->
+<!--        android:id="@+id/groupCommon"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="visible"-->
+<!--        app:constraint_referenced_ids="tvPay,tvExpress,tvTime,viewDivider,tvAddress,tvReceiverName,tvReceiverPhone,ivReceiver,ivPoster,tvPosterName,tvPosterPhone" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

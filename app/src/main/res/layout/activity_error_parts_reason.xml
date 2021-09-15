@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@color/white"
+    tools:ignore="MissingPrefix">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="异常件原因选择"
+        android:textColor="#282828"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:src="@mipmap/ic_error_close"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="#EAEAEA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvCancel"
+        app:layout_constraintTop_toBottomOf="@id/viewDivider"
+        app:layout_constraintStart_toStartOf="parent" />
+
+<!--    <RadioGroup-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="30dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/tvCancel"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/viewDivider">-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rb1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:button="@drawable/ic_red_check_shape"-->
+<!--            android:checked="true"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:paddingStart="14dp"-->
+<!--            android:text="送货无人接收"-->
+<!--            android:textColor="#282828"-->
+<!--            android:textSize="16dp" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rb2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:button="@drawable/ic_red_check_shape"-->
+<!--            android:checked="false"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:paddingStart="14dp"-->
+<!--            android:text="电话无人接听"-->
+<!--            android:textColor="#282828"-->
+<!--            android:textSize="16dp" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rb3"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:button="@drawable/ic_red_check_shape"-->
+<!--            android:checked="false"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:paddingStart="14dp"-->
+<!--            android:text="电话联系成功，收件人需修改时间"-->
+<!--            android:textColor="#282828"-->
+<!--            android:textSize="16dp" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rb4"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:button="@drawable/ic_red_check_shape"-->
+<!--            android:checked="false"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:paddingStart="14dp"-->
+<!--            android:text="收件人已亲自确认，拒收快递件"-->
+<!--            android:textColor="#282828"-->
+<!--            android:textSize="16dp" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rb5"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:button="@drawable/ic_red_check_shape"-->
+<!--            android:checked="false"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:paddingStart="14dp"-->
+<!--            android:text="收件人已亲自确认不收，拒收快递件"-->
+<!--            android:textColor="#282828"-->
+<!--            android:textSize="16dp" />-->
+<!--    </RadioGroup>-->
+
+    <TextView
+        android:id="@+id/tvCancel"
+        android:layout_width="130dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="#DE1111"
+        android:textSize="15dp"
+        app:bl_corners_radius="5dp"
+        app:bl_solid_color="#FFE7E7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/tvConfirm"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvConfirm"
+        android:layout_width="130dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="50dp"
+        android:gravity="center"
+        android:text="确认"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:bl_corners_radius="5dp"
+        app:bl_solid_color="#DE1111"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/tvCancel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

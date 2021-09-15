@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+    <include layout="@layout/icl_orange_title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#EDF1F5"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp">
+
+            <ImageView
+                android:id="@+id/ivTopPic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_pick_detail_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="25dp"
+                android:text="揽件详情"
+                android:textColor="@color/white"
+                android:textSize="23dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ivTopPic" />
+
+            <TextView
+                android:id="@+id/tvTitleEnglish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Delivery details"
+                android:textColor="#80FFFFFF"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="@id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+            <!-- 顶部用户信息 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clUserInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="12dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvPoster"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="26dp"
+                    android:background="#DE1111"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="寄"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPosterName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="20dp"
+                    android:includeFontPadding="false"
+                    android:textColor="#282828"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/tvPoster"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="张小凡" />
+
+                <TextView
+                    android:id="@+id/tvPosterPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:includeFontPadding="false"
+                    android:textColor="#282828"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/tvPosterName"
+                    app:layout_constraintStart_toEndOf="@id/tvPosterName"
+                    app:layout_constraintTop_toTopOf="@id/tvPosterName"
+                    tools:text="12300000000" />
+
+                <TextView
+                    android:id="@+id/tvPosterCopy"
+                    android:layout_width="48dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="复制"
+                    android:textColor="#DE1111"
+                    android:textSize="12dp"
+                    app:bl_corners_radius="2dp"
+                    app:bl_solid_color="#FFE7E7"
+                    app:layout_constraintBottom_toBottomOf="@id/tvPosterName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvPosterName" />
+
+                <TextView
+                    android:id="@+id/tvPosterAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="start"
+                    android:includeFontPadding="false"
+                    android:textColor="#999999"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tvPosterName"
+                    app:layout_constraintTop_toBottomOf="@id/tvPosterName"
+                    tools:text="广东省xxxxxxxxxx" />
+
+                <View
+                    android:id="@+id/viewDivider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="#efefef"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvPosterAddress" />
+
+                <TextView
+                    android:id="@+id/tvReceiver"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="26dp"
+                    android:background="#FF9F1E"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="收"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewDivider" />
+
+                <TextView
+                    android:id="@+id/tvReceiverName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="20dp"
+                    android:includeFontPadding="false"
+                    android:textColor="#282828"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/tvReceiver"
+                    app:layout_constraintTop_toBottomOf="@id/viewDivider"
+                    tools:text="张小凡" />
+
+                <TextView
+                    android:id="@+id/tvReceiverPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:includeFontPadding="false"
+                    android:textColor="#282828"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/tvReceiverName"
+                    app:layout_constraintStart_toEndOf="@id/tvReceiverName"
+                    app:layout_constraintTop_toTopOf="@id/tvReceiverName"
+                    tools:text="1230000000" />
+
+                <TextView
+                    android:id="@+id/tvReceiverCopy"
+                    android:layout_width="48dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:text="复制"
+                    android:textColor="#DE1111"
+                    android:textSize="12dp"
+                    app:bl_corners_radius="2dp"
+                    app:bl_solid_color="#FFE7E7"
+                    app:layout_constraintBottom_toBottomOf="@id/tvReceiverName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvReceiverName" />
+
+                <TextView
+                    android:id="@+id/tvReceiverAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="start"
+                    android:includeFontPadding="false"
+                    android:textColor="#999999"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tvReceiverName"
+                    app:layout_constraintTop_toBottomOf="@id/tvReceiverName"
+                    tools:text="广东省xxxxxxxxxx" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/ivStatusCard"
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="12dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_mine_card_num_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clUserInfo"
+                app:layout_goneMarginTop="100dp" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="等待支付"
+                android:textColor="#FF3B0D"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/ivStatusCard"
+                app:layout_constraintEnd_toEndOf="@id/ivStatusCard"
+                app:layout_constraintStart_toStartOf="@id/ivStatusCard"
+                app:layout_constraintTop_toTopOf="@id/ivStatusCard" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clBottom"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivStatusCard">
+
+                <!-- 寄件费用 -->
+                <TextView
+                    android:id="@+id/tvPriceTip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:text="寄件费用"
+                    android:textColor="#666666"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:includeFontPadding="false"
+                    android:text="0元"
+                    android:textColor="#282828"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvPriceTip"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvPriceTip" />
+
+                <View
+                    android:id="@+id/viewDividerPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="#EAEAEA"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvPriceTip" />
+
+                <!-- 优惠券折扣 -->
+                <TextView
+                    android:id="@+id/tvCouponTip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:text="优惠券折扣"
+                    android:textColor="#666666"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewDividerPrice" />
+
+                <TextView
+                    android:id="@+id/tvCoupon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:includeFontPadding="false"
+                    android:text="0元"
+                    android:textColor="#282828"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvCouponTip"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvCouponTip" />
+
+                <View
+                    android:id="@+id/viewDividerCoupon"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="#EAEAEA"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvCouponTip" />
+
+                <!-- 寄件费用合计 -->
+                <TextView
+                    android:id="@+id/tvTotalTip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:text="寄件费用合计"
+                    android:textColor="#666666"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewDividerCoupon" />
+
+                <TextView
+                    android:id="@+id/tvTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:includeFontPadding="false"
+                    android:text="0元"
+                    android:textColor="#DE1111"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvTotalTip"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvTotalTip" />
+
+                <View
+                    android:id="@+id/viewDividerTotal"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="#EAEAEA"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTotalTip" />
+
+                <!-- 寄单号 -->
+                <TextView
+                    android:id="@+id/tvExpressTip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:text="运单号"
+                    android:textColor="#666666"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewDividerTotal" />
+
+                <TextView
+                    android:id="@+id/tvExpressNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:includeFontPadding="false"
+                    android:text="111111111"
+                    android:textColor="#282828"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvExpressTip"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvExpressTip" />
+
+                <View
+                    android:id="@+id/viewDividerExpressNum"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#EAEAEA"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvExpressTip" />
+
+
+                <!-- 寄单号 -->
+                <TextView
+                    android:id="@+id/tvTimeTip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:text="预约时间"
+                    android:textColor="#666666"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewDividerExpressNum" />
+
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:includeFontPadding="false"
+                    android:text="10:00~11:00"
+                    android:textColor="#282828"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvTimeTip"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvTimeTip" />
+
+                <View
+                    android:id="@+id/viewDividerTime"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="#EAEAEA"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTimeTip" />
+
+                <TextView
+                    android:id="@+id/tvLeaveMessage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="12dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="12dp"
+                    android:text="备注"
+                    app:bl_solid_color="#80EDF1F5"
+                    app:bl_corners_radius="6dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewDividerTime" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.noober.background.view.BLTextView
+                android:id="@+id/tvConfirm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="50dp"
+                android:gravity="center"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="确认"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:visibility="gone"
+                app:bl_corners_radius="4dp"
+                app:bl_solid_color="#DE1111"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clBottom" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</LinearLayout>
