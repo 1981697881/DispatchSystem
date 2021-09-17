@@ -9,8 +9,10 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.dispatch.system.R;
 import com.dispatch.system.base.BaseActivity;
+import com.dispatch.system.entity.BaseBean;
 import com.dispatch.system.entity.BuildingTaskListBean;
 import com.dispatch.system.entity.MineTodayTaskBean;
 import com.dispatch.system.http.ApiClient;
@@ -89,6 +91,12 @@ public  class BuildingTaskListActivity extends BaseActivity {
 
         ivBack.setVisibility(View.VISIBLE);
 
+        adapter.setOnClickMyTextView(new BuildingTaskListAdapter.OnClickMyTextView() {
+            @Override
+            public void myTextViewClick(String userAddress, String jsdOrderNumber, String userPhone) {
+                comfimData(userAddress,jsdOrderNumber,userPhone);
+            }
+        });
         refreshLayout.setEnableLoadmore(false);
         refreshLayout.setEnableLoadmoreWhenContentNotFull(true);
         refreshLayout.setOnRefreshListener(refreshLayout -> requestData());
@@ -181,7 +189,27 @@ public  class BuildingTaskListActivity extends BaseActivity {
                     });
         }
     }
-    
+
+    public void comfimData(String userAddress, String jsdOrderNumber, String userPhone) {
+        ApiClient.getInstance().confirmJsd(userAddress, jsdOrderNumber,userPhone,
+                new MyObserver<BuildingTaskListBean>() {
+                    @Override
+                    protected void getDisposable(Disposable d) {
+
+                    }
+                    @Override
+                    protected void onSuccess(BuildingTaskListBean listBean) {
+                        refreshLayout.finishRefresh(500);
+                        datas.clear();
+                        datas.addAll(listBean.getData().getHouseTasks());
+                        adapter.notifyDataSetChanged();
+                    }
+                    @Override
+                    protected void onError(String msg) {
+                        hideLoading();
+                    }
+                });
+    }
     /**
      * 跳转到当前 Activity
      */

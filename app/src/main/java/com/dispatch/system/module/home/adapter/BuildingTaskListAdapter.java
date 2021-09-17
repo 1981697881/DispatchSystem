@@ -19,6 +19,7 @@ import com.dispatch.system.base.BaseRvAdapter;
 import com.dispatch.system.entity.BuildingTaskListBean;
 import com.dispatch.system.module.home.ui.BuildingDetailActivity;
 import com.dispatch.system.module.home.ui.BuildingDetailTimeOutActivity;
+import com.dispatch.system.module.home.ui.BuildingTaskListActivity;
 
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class BuildingTaskListAdapter extends BaseRvAdapter<BuildingTaskListAdapt
     private boolean isTimeOut;
     private boolean isMine;
     private boolean isJsd;
-
+    private OnClickMyTextView mOnClickMyTextView;
     public BuildingTaskListAdapter(Context context, List<BuildingTaskListBean.DataBean.HouseTasksBean> datas, boolean isTimeOut, boolean isMine, boolean isJsd) {
         super(context);
         this.datas = datas;
@@ -46,7 +47,12 @@ public class BuildingTaskListAdapter extends BaseRvAdapter<BuildingTaskListAdapt
         this.isMine = isMine;
         this.isJsd = isJsd;
     }
-
+    public interface OnClickMyTextView {//创建一个接口类
+        void myTextViewClick(String userAddress, String jsdOrderNumber, String userPhone);//创建一个回调函数，实例化接口的时候就要具体化这个回调函数，即要有函数体
+    }
+    public void setOnClickMyTextView(OnClickMyTextView onClickMyTextView){
+        this.mOnClickMyTextView = onClickMyTextView;
+    }
     @NonNull
     @Override
     public VH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -81,11 +87,11 @@ public class BuildingTaskListAdapter extends BaseRvAdapter<BuildingTaskListAdapt
             } else if(isMine) {
                 BuildingDetailActivity.move(mContext, bean.getBuildingCode(), bean.getHouseNumber());
             } else{
-                showNormalDialog((FragmentActivity) mContext, bean.getBuildingCode(), bean.getHouseNumber());
+                showNormalDialog((FragmentActivity) mContext, bean.getUserAddress(), bean.getJsdOrderNumber(), bean.getUserPhone());
             }
         });
     }
-    private void showNormalDialog(FragmentActivity activity,String buildingCode, String houseNumber){
+    private void showNormalDialog(FragmentActivity activity,String userAddress, String jsdOrderNumber, String userPhone){
         /* @setIcon 设置对话框图标
          * @setTitle 设置对话框标题
          * @setMessage 设置对话框消息提示
@@ -99,8 +105,8 @@ public class BuildingTaskListAdapter extends BaseRvAdapter<BuildingTaskListAdapt
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        mOnClickMyTextView.myTextViewClick(userAddress,jsdOrderNumber,userPhone);
                         //...To-do
-                        BuildingDetailActivity.move(mContext, buildingCode, houseNumber);
                     }
                 });
         normalDialog.setNegativeButton("取消",

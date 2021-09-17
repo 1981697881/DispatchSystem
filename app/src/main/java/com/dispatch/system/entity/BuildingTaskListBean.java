@@ -47,6 +47,9 @@ public class BuildingTaskListBean extends BaseBean {
 
             private String buildingCode;
             private String houseNumber;
+            private String userAddress;
+            private String jsdOrderNumber;
+            private String userPhone;
             private int notDeliveryCount;
             private int deliveryCount;
             private int receivingCount;
@@ -73,6 +76,15 @@ public class BuildingTaskListBean extends BaseBean {
 
             public String getBuildingCode() {
                 return buildingCode;
+            }
+            public String getUserAddress() {
+                return userAddress;
+            }
+            public String getJsdOrderNumber() {
+                return jsdOrderNumber;
+            }
+            public String getUserPhone() {
+                return userPhone;
             }
 
             public void setBuildingCode(String buildingCode) {

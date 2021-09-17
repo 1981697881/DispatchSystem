@@ -284,10 +284,11 @@ public class ApiClient {
     /**
      * 极速达确认揽件
      */
-    public void confirmJsd(String code, String trackingNumber, String budget,
-                                MyObserver<BaseBean> observer) {
+
+    public void confirmJsd(String userAddress, String jsdOrderNumber, String userPhone,
+                                MyObserver<BuildingTaskListBean> observer) {
         apiService
-                .confirmJsd(getSendHeader(), code, trackingNumber, budget)
+                .confirmJsd(getSendHeader(), userAddress, jsdOrderNumber, userPhone)
                 .compose(schedulersTransform())
                 .subscribe(observer);
     }

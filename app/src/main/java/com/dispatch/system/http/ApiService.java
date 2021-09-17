@@ -89,11 +89,10 @@ public interface ApiService {
      */
     @POST("mobileDeliveryRecord/sendJSDOrder")
     @FormUrlEncoded
-    Observable<BaseBean> confirmJsd(@HeaderMap Map<String, String> headerMap,
-                                         @Field("code") String code,
-                                         @Field("trackingNumber") String trackingNumber,
-                                         @Field("budget") String budget);
-
+    Observable<BuildingTaskListBean> confirmJsd(@HeaderMap Map<String, String> headerMap,
+                                         @Field("userAddress") String userAddress,
+                                         @Field("jsdOrderNumber") String jsdOrderNumber,
+                                         @Field("userPhone") String userPhone);
     /**
      * 极速达详情
      */
