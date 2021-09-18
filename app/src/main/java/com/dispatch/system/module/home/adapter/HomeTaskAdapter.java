@@ -124,16 +124,12 @@ public class HomeTaskAdapter extends
             ivStart.setVisibility(bean.isContainUrgentItem() ? View.VISIBLE : View.GONE);
         }
     }
-
     static class TimeViewHolder extends GroupViewHolder {
-
         private TextView genreTitle;
-
         public TimeViewHolder(View itemView) {
             super(itemView);
             genreTitle = itemView.findViewById(R.id.tvTime);
         }
-
         public void setGenreTitle(ExpandableGroup group) {
             genreTitle.setText(group.getTitle());
         }

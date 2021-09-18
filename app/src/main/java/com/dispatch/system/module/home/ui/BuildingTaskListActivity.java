@@ -114,7 +114,6 @@ public  class BuildingTaskListActivity extends BaseActivity {
                         @Override
                         protected void getDisposable(Disposable d) {
                         }
-
                         @Override
                         protected void onSuccess(BuildingTaskListBean listBean) {
                             refreshLayout.finishRefresh(500);
@@ -195,18 +194,17 @@ public  class BuildingTaskListActivity extends BaseActivity {
                 new MyObserver<BuildingTaskListBean>() {
                     @Override
                     protected void getDisposable(Disposable d) {
-
                     }
+
                     @Override
                     protected void onSuccess(BuildingTaskListBean listBean) {
-                        refreshLayout.finishRefresh(500);
-                        datas.clear();
-                        datas.addAll(listBean.getData().getHouseTasks());
-                        adapter.notifyDataSetChanged();
+                        ToastUtils.showLong("添加自揽件成功！");
+                        requestData();
                     }
+
                     @Override
                     protected void onError(String msg) {
-                        hideLoading();
+                        refreshLayout.finishRefresh(500);
                     }
                 });
     }

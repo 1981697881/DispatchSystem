@@ -70,6 +70,11 @@ public class BuildingTaskListAdapter extends BaseRvAdapter<BuildingTaskListAdapt
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams)  holder.tvReceiver.getLayoutParams();
             layoutParams.setMarginStart(40);//把75dp转换为px
             holder.tvReceiver.setLayoutParams(layoutParams);
+            holder.tvPostAllReceiveCount.setText(String.format("/%d", 1));
+            holder.tvPostHasReceiveCount.setText(String.valueOf(0));
+        }else{
+            holder.tvPostAllReceiveCount.setText(String.format("/%d", bean.getReceivingCount() + bean.getNotReceivingCount()));
+            holder.tvPostHasReceiveCount.setText(String.valueOf(bean.getReceivingCount()));
         }
         if (isTimeOut) {
             holder.tvPostAllDeliveryCount.setText(String.format("/%d", bean.getTimeoutCount()));
@@ -78,8 +83,7 @@ public class BuildingTaskListAdapter extends BaseRvAdapter<BuildingTaskListAdapt
             holder.tvPostAllDeliveryCount.setText(String.format("/%d", bean.getDeliveryCount() + bean.getNotDeliveryCount()));
             holder.tvPostHasDeliveryCount.setText(String.valueOf(bean.getDeliveryCount()));
         }
-        holder.tvPostAllReceiveCount.setText(String.format("/%d", bean.getReceivingCount() + bean.getNotReceivingCount()));
-        holder.tvPostHasReceiveCount.setText(String.valueOf(bean.getReceivingCount()));
+
         holder.ivStart.setVisibility(bean.isContainUrgentItem() ? View.VISIBLE : View.GONE);
         holder.clRoot.setOnClickListener(v -> {
             if (isTimeOut) {
