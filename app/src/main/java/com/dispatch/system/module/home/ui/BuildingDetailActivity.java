@@ -2,6 +2,7 @@ package com.dispatch.system.module.home.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
@@ -34,6 +35,7 @@ import static com.scwang.smartrefresh.layout.util.DensityUtil.dp2px;
  */
 public class BuildingDetailActivity extends BaseActivity {
 
+    private static boolean isScan = false;
     @BindView(R.id.tvTitle)
     TextView tvTitle;
     @BindView(R.id.tvPostTab)
@@ -46,7 +48,7 @@ public class BuildingDetailActivity extends BaseActivity {
     ImageView viewIndicator;
     private String buildingCode;
     private String houseNumber;
-
+    private String trackingNumber;
     private List<Fragment> fragments = new ArrayList<>();
 
     @Override
@@ -57,26 +59,33 @@ public class BuildingDetailActivity extends BaseActivity {
     @Override
     protected void initView() {
         super.initView();
-        buildingCode = getIntent().getStringExtra("buildingCode");
-        houseNumber = getIntent().getStringExtra("houseNumber");
-        String title = houseNumber == null ? "" : (houseNumber + "户型") + "派送/揽收详情";
-        tvTitle.setText(title);
-
-
-        // 移动指示器
-        tabWidth = (ScreenUtils.getScreenWidth() - dp2px(24)) / 2;
-        int offset = (tabWidth - dp2px(40)) / 2 + dp2px(12);
+        if(isScan){
+            String title = "派送详情";
+            tvReceiverTab.setVisibility(View.GONE);
+            tvTitle.setText(title);
+            // 移动指示器
+            tabWidth = (ScreenUtils.getScreenWidth() - dp2px(24)) / 2;
+            int offset = (tabWidth - dp2px(40)) + dp2px(34);
+            viewIndicator.animate().translationX(offset);
+            switchTab(0);
+            fragments.add(new BuildingDetailScanFragment(getIntent().getStringExtra("trackingNumber")));
+        }else{
+            buildingCode = getIntent().getStringExtra("buildingCode");
+            houseNumber = getIntent().getStringExtra("houseNumber");
+            String title = houseNumber == null ? "" : (houseNumber + "户型") + "派送/揽收详情";
+            tvTitle.setText(title);
+            // 移动指示器
+            tabWidth = (ScreenUtils.getScreenWidth() - dp2px(24)) / 2;
+            int offset = (tabWidth - dp2px(40)) / 2 + dp2px(12);
 //        Matrix matrix = new Matrix();
 //        matrix.postTranslate(offset, 0);
 //        viewIndicator.setImageMatrix(matrix);
-        viewIndicator.animate().translationX(offset);
-
-        switchTab(0);
-
-        fragments.add(new BuildingDetailDeliveryFragment(buildingCode, houseNumber));
-        fragments.add(new BuildingDetailReceiverFragment(buildingCode, houseNumber));
+            viewIndicator.animate().translationX(offset);
+            switchTab(0);
+            fragments.add(new BuildingDetailDeliveryFragment(buildingCode, houseNumber));
+            fragments.add(new BuildingDetailReceiverFragment(buildingCode, houseNumber));
+        }
         viewPager.setAdapter(new PagerAdapter(getSupportFragmentManager()));
-
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -149,12 +158,18 @@ public class BuildingDetailActivity extends BaseActivity {
     }
 
     public static void move(Context context, String buildingCode, String houseNumber) {
+        isScan = false;
         Intent intent = new Intent(context, BuildingDetailActivity.class);
         intent.putExtra("buildingCode", buildingCode);
         intent.putExtra("houseNumber", houseNumber);
         context.startActivity(intent);
     }
-
+    public static void scan(Context context, String trackingNumber) {
+        isScan = true;
+        Intent intent = new Intent(context, BuildingDetailActivity.class);
+        intent.putExtra("trackingNumber", trackingNumber);
+        context.startActivity(intent);
+    }
     @OnClick(R.id.ivBack)
     public void onViewClicked() {
         finish();

@@ -436,6 +436,16 @@ public class ApiClient {
                 .compose(schedulersTransform())
                 .subscribe(observer);
     }
+    /**
+     * 扫描户号派送记录列表
+     */
+    public void getScanDetailList(String trackingNumber,
+                                      MyObserver<BuildingDetailDeliveryBean> observer) {
+        apiService
+                .getScanDetailList(getSendHeader(),trackingNumber)
+                .compose(schedulersTransform())
+                .subscribe(observer);
+    }
 
     /**
      * 户号派送记录列表

@@ -58,7 +58,7 @@ public class SortScanActivity extends BaseActivity implements QRCodeView.Delegat
     ZXingView mZXingView;
     @BindView(R.id.rv)
     RecyclerView rv;
-
+    private boolean isOpen = false;
     private ScanResultAdapter adapter;
     private List<MemberBean> dataList = new ArrayList<>();
 
@@ -102,11 +102,15 @@ public class SortScanActivity extends BaseActivity implements QRCodeView.Delegat
     @Override
     protected void onPause() {
         super.onPause();
+        mZXingView.closeFlashlight();
+        isOpen = false;
         mZXingView.stopCamera(); // 关闭摄像头预览，并且隐藏扫描框
     }
 
     @Override
     protected void onDestroy() {
+        mZXingView.closeFlashlight();
+        isOpen = false;
         mZXingView.onDestroy(); // 销毁二维码扫描控件
         super.onDestroy();
         if (EventBus.getDefault().isRegistered(this)) {
@@ -114,7 +118,7 @@ public class SortScanActivity extends BaseActivity implements QRCodeView.Delegat
         }
     }
 
-    @OnClick({R.id.ivBack, R.id.tvAddStorage, R.id.tvConfirm})
+    @OnClick({R.id.ivBack, R.id.tvAddStorage, R.id.tvConfirm, R.id.ivHandler})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivBack:
@@ -126,6 +130,15 @@ public class SortScanActivity extends BaseActivity implements QRCodeView.Delegat
                 break;
             case R.id.tvConfirm:
                 searchExpress();
+                break;
+            case R.id.ivHandler:
+                if(isOpen){
+                    mZXingView.closeFlashlight();
+                    isOpen = false;
+                }else{
+                    mZXingView.openFlashlight();
+                    isOpen = true;
+                }
                 break;
         }
     }

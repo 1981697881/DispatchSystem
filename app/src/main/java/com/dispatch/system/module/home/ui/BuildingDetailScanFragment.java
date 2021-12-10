@@ -16,7 +16,6 @@ import com.dispatch.system.entity.BuildingDetailDeliveryBean;
 import com.dispatch.system.http.ApiClient;
 import com.dispatch.system.http.MyObserver;
 import com.dispatch.system.module.home.adapter.BuildingDetailDeliveryAdapter;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ import io.reactivex.disposables.Disposable;
  * @author chenjunxu
  * @date 2020/7/23
  */
-public class BuildingDetailDeliveryTimeoutFragment extends BaseFragment {
+public class BuildingDetailScanFragment extends BaseFragment {
 
     @BindView(R.id.rvData)
     RecyclerView rvData;
@@ -46,17 +45,13 @@ public class BuildingDetailDeliveryTimeoutFragment extends BaseFragment {
     TextView tvCancel;
     @BindView(R.id.tvConfirm)
     TextView tvConfirm;
-    @BindView(R.id.refreshLayout)
-    SmartRefreshLayout refreshLayout;
 
-    private String buildingCode;
-    private String houseNumber;
+    private String trackingNumber;
     private BuildingDetailDeliveryAdapter adapter;
     private List<BuildingDetailDeliveryBean.DataBean.HouseDeliveryRecordsBean> dataList = new ArrayList<>();
 
-    public BuildingDetailDeliveryTimeoutFragment(String buildingCode, String houseNumber) {
-        this.buildingCode = buildingCode;
-        this.houseNumber = houseNumber;
+    public BuildingDetailScanFragment(String trackingNumber) {
+        this.trackingNumber = trackingNumber;
     }
 
     @Override
@@ -69,16 +64,9 @@ public class BuildingDetailDeliveryTimeoutFragment extends BaseFragment {
         super.initView();
         rvData.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new BuildingDetailDeliveryAdapter(getActivity(), dataList);
-
-
-        refreshLayout.setEnableLoadmore(true);
-        refreshLayout.setEnableLoadmoreWhenContentNotFull(true);
-        refreshLayout.setOnRefreshListener(refreshLayout -> requestData(true));
-        refreshLayout.setOnLoadmoreListener(loadMoreListener -> requestData(false));
-
         rvData.setAdapter(adapter);
 
-        requestData(true);
+        requestData();
     }
 
     @OnClick({R.id.tvErrorPost, R.id.tvChangeTime, R.id.tvUserSign, R.id.tvCancel, R.id.tvConfirm})
@@ -98,7 +86,7 @@ public class BuildingDetailDeliveryTimeoutFragment extends BaseFragment {
                 boolean isNeedShow = false;
                 for (int i = 0; i < dataList.size(); i++) {
                     String state = dataList.get(i).getState();
-                    if ("WAIT".equals(state) || "DELIVERING".equals(state) || "EXCEPTION".equals(state) || "TIMEOUT".equals(state)) {
+                    if ("WAIT".equals(state) || "DELIVERING".equals(state) || "EXCEPTION".equals(state)) {
                         // 待派送
                         isNeedShow = true;
                         dataList.get(i).setCheck(false);
@@ -142,8 +130,10 @@ public class BuildingDetailDeliveryTimeoutFragment extends BaseFragment {
 //        }
     }
 
+
+
     public void update() {
-        requestData(true);
+        requestData();
         type = Type.TYPE_NONE;
         adapter.setCheckMode(false);
         adapter.notifyDataSetChanged();
@@ -187,50 +177,25 @@ public class BuildingDetailDeliveryTimeoutFragment extends BaseFragment {
         }
     }
 
-    private int pageIndex = 1;
-
-    private void requestData(boolean isRefresh) {
-        if (isRefresh) {
-            pageIndex = 1;
-        }
+    private void requestData() {
         showLoading();
-        ApiClient.getInstance().getDeliveryDetailTimeoutList(buildingCode, houseNumber, pageIndex,
+        ApiClient.getInstance().getScanDetailList(trackingNumber,
                 new MyObserver<BuildingDetailDeliveryBean>() {
                     @Override
                     protected void getDisposable(Disposable d) {
                     }
+
                     @Override
                     protected void onSuccess(BuildingDetailDeliveryBean bean) {
                         hideLoading();
-                        if (isRefresh) {
-                            dataList.clear();
-                        }
-                        List<BuildingDetailDeliveryBean.DataBean.HouseDeliveryRecordsBean> beanList = bean.getData().getHouseDeliveryRecords();
-                        if (beanList.size() > 0) {
-                            pageIndex++;
-                            if (!isRefresh) {
-                                if (type == Type.TYPE_ERROR || type == Type.TYPE_CHANGE_TIME || type == Type.TYPE_SIGN) {
-                                    for (int i = 0; i < beanList.size(); i++) {
-                                        String state = dataList.get(i).getState();
-                                        if ("WAIT".equals(state) || "DELIVERING".equals(state) || "EXCEPTION".equals(state) || "TIMEOUT".equals(state)) {
-                                            beanList.get(i).setOpenCheckMode(true);
-                                            beanList.get(i).setCheck(false);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        dataList.addAll(beanList);
-                        refreshLayout.finishLoadmore(500);
-                        refreshLayout.finishRefresh(500);
+                        dataList.clear();
+                        dataList.addAll(bean.getData().getHouseDeliveryRecords());
                         adapter.notifyDataSetChanged();
-                        ((BuildingDetailTimeOutActivity) getActivity()).updatePostTab(dataList.size());
+                        ((BuildingDetailActivity)getActivity()).updatePostTab(dataList.size());
                     }
 
                     @Override
                     protected void onError(String msg) {
-                        refreshLayout.finishLoadmore(500);
-                        refreshLayout.finishRefresh(500);
                         hideLoading();
                     }
                 });

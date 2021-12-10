@@ -111,7 +111,7 @@
             android:drawableTop="@mipmap/ic_home_error"
             android:drawablePadding="17dp"
             android:includeFontPadding="false"
-            android:text="异常件扫描"
+            android:text="扫描签收"
             android:textColor="#282828"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"

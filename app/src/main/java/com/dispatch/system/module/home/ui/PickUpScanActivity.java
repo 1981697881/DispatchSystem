@@ -41,7 +41,7 @@ public class PickUpScanActivity extends BaseActivity implements QRCodeView.Deleg
     TextView tvTitle;
 
     private PICK_UP_TYPE type = PICK_UP_TYPE.TYPE_SUBMIT;
-
+    private boolean isOpen = false;
     @Override
     protected int bindLayout() {
         return R.layout.activity_pick_up_scan;
@@ -55,7 +55,7 @@ public class PickUpScanActivity extends BaseActivity implements QRCodeView.Deleg
         toggleType();
     }
 
-    @OnClick({R.id.ivBack, R.id.tvConfirm, R.id.tvSwitchStatus})
+    @OnClick({R.id.ivBack, R.id.tvConfirm, R.id.tvSwitchStatus, R.id.ivHandler})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivBack:
@@ -71,6 +71,15 @@ public class PickUpScanActivity extends BaseActivity implements QRCodeView.Deleg
                 break;
             case R.id.tvSwitchStatus:
                 toggleType();
+                break;
+            case R.id.ivHandler:
+                if(isOpen){
+                    mZXingView.closeFlashlight();
+                    isOpen = false;
+                }else{
+                    mZXingView.openFlashlight();
+                    isOpen = true;
+                }
                 break;
         }
     }
@@ -160,6 +169,8 @@ public class PickUpScanActivity extends BaseActivity implements QRCodeView.Deleg
     @Override
     protected void onPause() {
         super.onPause();
+        mZXingView.closeFlashlight();
+        isOpen = false;
         mZXingView.stopCamera(); // 关闭摄像头预览，并且隐藏扫描框
     }
 
@@ -171,6 +182,8 @@ public class PickUpScanActivity extends BaseActivity implements QRCodeView.Deleg
 
     @Override
     protected void onDestroy() {
+        mZXingView.closeFlashlight();
+        isOpen = false;
         mZXingView.onDestroy(); // 销毁二维码扫描控件
         super.onDestroy();
     }

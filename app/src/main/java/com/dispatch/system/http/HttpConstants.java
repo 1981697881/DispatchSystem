@@ -12,10 +12,12 @@ public class HttpConstants {
      * 正式环境
      *
      */
-    /*public final static String ROOT_URL = "https://epssys.kuyuntech.com/";*/
-    public final static String ROOT_URL_TEST = "http://xsd.gzfzdev.com:50025/xinshuida/";
-    public final static String ROOT_URL = "http://xsd.gzfzdev.com:50025/xinshuida/";
-   /* public final static String ROOT_URL_TEST = "http://nat.kuyuntech.com:19835/";*/
+   /* public final static String ROOT_URL = "https://epssys.kuyuntech.com/";*/
+   /* public final static String ROOT_URL_TEST = "http://xsd.gzfzdev.com:50025/xinshuida/";
+    public final static String ROOT_URL = "http://xsd.gzfzdev.com:50025/xinshuida/";*/
+    public final static String ROOT_URL_TEST = "http://test.gzfzdev.com:5035/";
+    public final static String ROOT_URL = "http://test.gzfzdev.com:5035/";
+    /*public final static String ROOT_URL_TEST = "http://nat.kuyuntech.com:19835/";*/
     /**
      * 接口请求前缀
      */

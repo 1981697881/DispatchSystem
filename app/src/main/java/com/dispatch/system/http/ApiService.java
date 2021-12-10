@@ -197,7 +197,14 @@ public interface ApiService {
     @FormUrlEncoded
     Observable<BuildingDetailDeliveryBean> getDeliveryDetailList(@HeaderMap Map<String, String> headerMap,
                                                                  @Field("buildingCode") String buildingCode,
-                                                                 @Field("houseNumber") String houseNumber);
+                                                                 @Field("houseNumber") String houseNumber);/**
+
+     * 扫描户号派送记录列表
+     */
+    @POST("task/orderScan")
+    @FormUrlEncoded
+    Observable<BuildingDetailDeliveryBean> getScanDetailList(@HeaderMap Map<String, String> headerMap,
+                                                                 @Field("trackingNumber") String trackingNumber);
 
     /**
      * 户号派送记录列表

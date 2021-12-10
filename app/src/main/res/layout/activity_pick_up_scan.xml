@@ -93,7 +93,15 @@
         app:layout_constraintEnd_toEndOf="@id/mZXingView"
         app:layout_constraintStart_toStartOf="@id/mZXingView"
         app:layout_constraintTop_toTopOf="@id/mZXingView" />
-
+    <ImageView
+        android:id="@+id/ivHandler"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="95dp"
+        android:src="@mipmap/ic_handler"
+        app:layout_constraintEnd_toEndOf="@id/mZXingView"
+        app:layout_constraintStart_toStartOf="@id/mZXingView"
+        app:layout_constraintTop_toTopOf="@id/mZXingView" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

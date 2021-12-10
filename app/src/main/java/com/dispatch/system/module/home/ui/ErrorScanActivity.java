@@ -24,10 +24,11 @@ import static cn.bingoogolapple.qrcode.core.BarcodeType.ONE_DIMENSION;
  */
 public class ErrorScanActivity extends BaseActivity implements QRCodeView.Delegate {
 
-    @BindView(R.id.etInputExpressNum)
-    EditText etInputExpressNum;
+   /* @BindView(R.id.etInputExpressNum)
+    EditText etInputExpressNum;*/
     @BindView(R.id.mZXingView)
     ZXingView mZXingView;
+    private boolean isOpen = false;
 
     @Override
     protected int bindLayout() {
@@ -41,14 +42,23 @@ public class ErrorScanActivity extends BaseActivity implements QRCodeView.Delega
         mZXingView.setType(ONE_DIMENSION, null);
     }
 
-    @OnClick({R.id.ivBack, R.id.tvConfirm})
+    @OnClick({R.id.ivBack, /*R.id.tvConfirm,*/ R.id.ivHandler})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivBack:
                 finish();
                 break;
-            case R.id.tvConfirm:
+           /* case R.id.tvConfirm:
                 searchExpress();
+                break;*/
+            case R.id.ivHandler:
+                if(isOpen){
+                    mZXingView.closeFlashlight();
+                    isOpen = false;
+                }else{
+                    mZXingView.openFlashlight();
+                    isOpen = true;
+                }
                 break;
         }
     }
@@ -56,7 +66,7 @@ public class ErrorScanActivity extends BaseActivity implements QRCodeView.Delega
     /**
      * 确认快递单号
      */
-    private void searchExpress() {
+   /* private void searchExpress() {
         String expressNum = etInputExpressNum.getText().toString();
         if (TextUtils.isEmpty(expressNum)) {
             ToastUtils.showLong("请输入快递单号");
@@ -64,7 +74,7 @@ public class ErrorScanActivity extends BaseActivity implements QRCodeView.Delega
         }
         etInputExpressNum.setText(null);
         ScanErrorResultActivity.move(this, expressNum);
-    }
+    }*/
 
     @Override
     protected void onStart() {
@@ -81,8 +91,9 @@ public class ErrorScanActivity extends BaseActivity implements QRCodeView.Delega
     @Override
     public void onScanQRCodeSuccess(String result) {
 //        mZXingView.startSpot(); // 开始识别
-        ScanErrorResultActivity.move(this, result);
-        ToastUtils.showLong(result);
+        /*ScanErrorResultActivity.move(this, result);
+        ToastUtils.showLong(result);*/
+        BuildingDetailActivity.scan(this, result);
     }
 
     @Override
@@ -98,11 +109,15 @@ public class ErrorScanActivity extends BaseActivity implements QRCodeView.Delega
     @Override
     protected void onPause() {
         super.onPause();
+        mZXingView.closeFlashlight();
+        isOpen = false;
         mZXingView.stopCamera(); // 关闭摄像头预览，并且隐藏扫描框
     }
 
     @Override
     protected void onDestroy() {
+        mZXingView.closeFlashlight();
+        isOpen = false;
         mZXingView.onDestroy(); // 销毁二维码扫描控件
         super.onDestroy();
     }
