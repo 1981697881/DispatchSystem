@@ -8,8 +8,8 @@ android {
         applicationId "com.dispatch.system"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 109
-        versionName "1.0.9"
+        versionCode 111
+        versionName "1.1.1"
     }
 
     buildTypes {

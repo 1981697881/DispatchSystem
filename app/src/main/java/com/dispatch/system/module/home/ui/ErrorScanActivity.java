@@ -24,8 +24,8 @@ import static cn.bingoogolapple.qrcode.core.BarcodeType.ONE_DIMENSION;
  */
 public class ErrorScanActivity extends BaseActivity implements QRCodeView.Delegate {
 
-   /* @BindView(R.id.etInputExpressNum)
-    EditText etInputExpressNum;*/
+    @BindView(R.id.etInputExpressNum)
+    EditText etInputExpressNum;
     @BindView(R.id.mZXingView)
     ZXingView mZXingView;
     private boolean isOpen = false;
@@ -42,15 +42,15 @@ public class ErrorScanActivity extends BaseActivity implements QRCodeView.Delega
         mZXingView.setType(ONE_DIMENSION, null);
     }
 
-    @OnClick({R.id.ivBack, /*R.id.tvConfirm,*/ R.id.ivHandler})
+    @OnClick({R.id.ivBack, R.id.tvConfirm, R.id.ivHandler})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ivBack:
                 finish();
                 break;
-           /* case R.id.tvConfirm:
+            case R.id.tvConfirm:
                 searchExpress();
-                break;*/
+                break;
             case R.id.ivHandler:
                 if(isOpen){
                     mZXingView.closeFlashlight();
@@ -66,15 +66,16 @@ public class ErrorScanActivity extends BaseActivity implements QRCodeView.Delega
     /**
      * 确认快递单号
      */
-   /* private void searchExpress() {
+    private void searchExpress() {
         String expressNum = etInputExpressNum.getText().toString();
         if (TextUtils.isEmpty(expressNum)) {
             ToastUtils.showLong("请输入快递单号");
             return;
         }
         etInputExpressNum.setText(null);
-        ScanErrorResultActivity.move(this, expressNum);
-    }*/
+        BuildingDetailActivity.scan(this, expressNum);
+        /*ScanErrorResultActivity.move(this, expressNum);*/
+    }
 
     @Override
     protected void onStart() {

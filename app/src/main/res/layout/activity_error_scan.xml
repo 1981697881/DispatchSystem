@@ -41,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
-   <!-- app:layout_constraintBottom_toTopOf="@id/etInputExpressNum"-->
+
     <cn.bingoogolapple.qrcode.zxing.ZXingView
         android:id="@+id/mZXingView"
         android:layout_width="0dp"
@@ -50,6 +50,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/etInputExpressNum"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
@@ -78,6 +79,7 @@
         app:layout_constraintEnd_toEndOf="@id/mZXingView"
         app:layout_constraintStart_toStartOf="@id/mZXingView"
         app:layout_constraintTop_toTopOf="@id/mZXingView" />
+
     <ImageView
         android:id="@+id/ivHandler"
         android:layout_width="40dp"
@@ -87,6 +89,7 @@
         app:layout_constraintEnd_toEndOf="@id/mZXingView"
         app:layout_constraintStart_toStartOf="@id/mZXingView"
         app:layout_constraintTop_toTopOf="@id/mZXingView" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -116,7 +119,7 @@
         app:layout_constraintTop_toTopOf="@id/mZXingView" />
 
 
-   <!-- <EditText
+    <EditText
         android:id="@+id/etInputExpressNum"
         android:layout_width="300dp"
         android:layout_height="44dp"
@@ -143,7 +146,7 @@
         app:bl_solid_color="#DE1111"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etInputExpressNum" />-->
+        app:layout_constraintTop_toBottomOf="@id/etInputExpressNum" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
