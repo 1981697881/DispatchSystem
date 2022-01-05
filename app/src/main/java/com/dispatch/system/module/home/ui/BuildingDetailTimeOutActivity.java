@@ -166,6 +166,7 @@ public class BuildingDetailTimeOutActivity extends BaseActivity {
         viewPager.setCurrentItem(0);
     }
 
+
     @OnClick(R.id.tvReceiverTab)
     public void clickReceiverTab() {
         viewPager.setCurrentItem(1);

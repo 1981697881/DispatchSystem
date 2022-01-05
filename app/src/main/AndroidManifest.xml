@@ -104,6 +104,14 @@
             android:launchMode="singleTop"
             android:screenOrientation="behind" />
         <activity
+            android:name=".module.common.WorkOrderDetailActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+        <activity
+            android:name=".module.mine.WorkOrderActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="behind" />
+        <activity
             android:name=".module.home.ui.DeliveryDetailChangeTimeActivity"
             android:launchMode="singleTop"
             android:screenOrientation="behind"
@@ -118,6 +126,7 @@
             android:launchMode="singleTop"
             android:screenOrientation="behind"
             android:theme="@style/MyDialogStyle" />
+
         <activity
             android:name=".module.home.ui.ExpressDialogActivity"
             android:launchMode="singleTop"

@@ -1,5 +1,6 @@
 package com.dispatch.system.module.mine;
 
+import android.content.Context;
 import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ public class MainMineFragment extends BaseFragment {
     TextView tvPhone;
     @BindView(R.id.tvWorkNum)
     TextView tvWorkNum;
+    @BindView(R.id.workOrderNum)
+    TextView workOrderNum;
     @BindView(R.id.viewWorkNumCard)
     ImageView viewWorkNumCard;
 
@@ -105,7 +108,14 @@ public class MainMineFragment extends BaseFragment {
             }
         });
     }
-
+    /**
+     * 工单信息
+     */
+    @OnClick(R.id.workOrder)
+    public void workOrder() {
+        Intent intent = new Intent(getActivity(), WorkOrderActivity.class);
+        getActivity().startActivity(intent);
+    }
 
     /**
      * 登录成功，清理旧数据

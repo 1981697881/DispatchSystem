@@ -88,9 +88,7 @@ public  class BuildingTaskListActivity extends BaseActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
         requestData();
-
         ivBack.setVisibility(View.VISIBLE);
-
         adapter.setOnClickMyTextView(new BuildingTaskListAdapter.OnClickMyTextView() {
             @Override
             public void myTextViewClick(String userAddress, String jsdOrderNumber, String userPhone) {
@@ -101,7 +99,6 @@ public  class BuildingTaskListActivity extends BaseActivity {
         refreshLayout.setEnableLoadmoreWhenContentNotFull(true);
         refreshLayout.setOnRefreshListener(refreshLayout -> requestData());
     }
-
     @OnClick(R.id.ivBack)
     void back() {
         finish();
