@@ -12,6 +12,7 @@ import com.dispatch.system.base.BaseFragment;
 import com.dispatch.system.constants.SPConstants;
 import com.dispatch.system.entity.BaseBean;
 import com.dispatch.system.entity.EmployeeInfoBean;
+import com.dispatch.system.entity.WorkOrderBean;
 import com.dispatch.system.http.ApiClient;
 import com.dispatch.system.http.MyObserver;
 import com.dispatch.system.module.login.LoginActivity;
@@ -53,8 +54,34 @@ public class MainMineFragment extends BaseFragment {
         tvName.setText(name);
         tvPhone.setText(phone);
         requestData();
+        requestWorkOrderNum();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        requestWorkOrderNum();//刷新数据
     }
 
+    private void requestWorkOrderNum() {
+        ApiClient.getInstance().getWorkOrderListPage("0",new MyObserver<WorkOrderBean>() {
+            @Override
+            protected void getDisposable(Disposable d) {
+            }
+
+            @Override
+            protected void onSuccess(WorkOrderBean workOrderBean) {
+                try {
+                    workOrderNum.setText(String.valueOf(workOrderBean.getData().getWorkOrder().size()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            protected void onError(String msg) {
+            }
+        });
+    }
     private void requestData() {
         ApiClient.getInstance().getEmployeeInfo(new MyObserver<EmployeeInfoBean>() {
             @Override

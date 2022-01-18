@@ -19,6 +19,7 @@ import com.dispatch.system.entity.NewListBean;
 import com.dispatch.system.entity.PickUpDetailBean;
 import com.dispatch.system.entity.SearchMemberBean;
 import com.dispatch.system.entity.UploadSignBean;
+import com.dispatch.system.entity.WorkOrderBean;
 
 import java.util.Map;
 
@@ -120,7 +121,12 @@ public interface ApiService {
     Observable<MinePickUpBean> getMinePickUpListPage(@HeaderMap Map<String, String> headerMap,
                                                      @Field("pageSize") String pageSize,
                                                      @Field("pageIndex") String pageIndex,
-                                                     @Field("onPage") boolean onPage);
+                                                     @Field("onPage") boolean onPage);/**
+     * 我的工单
+     */
+    @POST("deliveryRecord/findBySenderNo")
+    Observable<WorkOrderBean> getWorkOrderListPage(@HeaderMap Map<String, String> headerMap,
+                                                   @Body RequestBody body);
 
     /**
      * 查询异常描述模版
@@ -162,7 +168,12 @@ public interface ApiService {
     @FormUrlEncoded
     Observable<BaseBean> addDeliveryException(@HeaderMap Map<String, String> headerMap,
                                               @Field("trackingNumber") String trackingNumber,
-                                              @Field("exceptionTemplateCode") String exceptionTemplateCode);
+                                              @Field("exceptionTemplateCode") String exceptionTemplateCode);/**
+     * 工单处理
+     */
+    @POST("deliveryRecord/updateWorkOrder")
+    Observable<BaseBean> updateWorkOrder(@HeaderMap Map<String, String> headerMap,
+                                                @Body RequestBody body);
 
     /**
      * 配送件详情

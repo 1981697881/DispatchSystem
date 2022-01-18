@@ -72,7 +72,7 @@
 
         <ImageView
             android:id="@+id/ivPickUp"
-            android:layout_width="22dp"
+            android:layout_width="23dp"
             android:layout_height="22dp"
             app:bl_selected_drawable="@mipmap/ic_main_tab_good_light"
             app:bl_unSelected_drawable="@mipmap/ic_main_tab_good_dark" />

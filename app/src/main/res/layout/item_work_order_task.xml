@@ -259,6 +259,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvMinePickUpExpress"
         app:layout_constraintTop_toBottomOf="@id/tvMinePickUpTime" />
+    <TextView
+        android:id="@+id/tvIsUrgent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:includeFontPadding="false"
+        android:text="紧急情况"
+        android:textColor="#999999"
+        android:textSize="14dp"
+        app:layout_constraintStart_toStartOf="@id/tvMinePickUpExpress"
+        app:layout_constraintTop_toBottomOf="@id/tvMinePickUpPay" />
 
     <!-- 自揽件group -->
     <androidx.constraintlayout.widget.Group

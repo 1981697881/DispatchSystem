@@ -145,7 +145,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvPriceTip" />
 
-                <!-- 优惠券折扣 -->
                 <TextView
                     android:id="@+id/tvCouponTip"
                     android:layout_width="wrap_content"

@@ -21,6 +21,8 @@ import com.dispatch.system.base.BaseRvAdapter;
 import com.dispatch.system.common.ExpressHelper;
 import com.dispatch.system.common.PhoneHelper;
 import com.dispatch.system.entity.ReceivingRecordsBean;
+import com.dispatch.system.entity.WorkOrderBean;
+import com.dispatch.system.module.common.PickUpDetailActivity;
 import com.dispatch.system.module.common.WorkOrderDetailActivity;
 
 import java.util.List;
@@ -33,9 +35,9 @@ import butterknife.ButterKnife;
  * 我的工单 适配器
  */
 public class WorkOrderAdapter extends BaseRvAdapter<WorkOrderAdapter.VH> {
-    private List<ReceivingRecordsBean> dataList;
+    private List<WorkOrderBean.DataBean.workOrderBean> dataList;
 
-    public WorkOrderAdapter(Context context, List<ReceivingRecordsBean> dataList) {
+    public WorkOrderAdapter(Context context, List<WorkOrderBean.DataBean.workOrderBean> dataList) {
         super(context);
         this.dataList = dataList;
     }
@@ -64,6 +66,8 @@ public class WorkOrderAdapter extends BaseRvAdapter<WorkOrderAdapter.VH> {
 
         @BindView(R.id.ivPoster)
         ImageView ivPoster;
+        @BindView(R.id.tvIsUrgent)
+        TextView tvIsUrgent;
         @BindView(R.id.tvPosterName)
         TextView tvPosterName;
         @BindView(R.id.tvPosterPhone)
@@ -108,137 +112,33 @@ public class WorkOrderAdapter extends BaseRvAdapter<WorkOrderAdapter.VH> {
             ButterKnife.bind(this, itemView);
         }
 
-        public void updateUI(ReceivingRecordsBean bean) {
-
+        public void updateUI(WorkOrderBean.DataBean.workOrderBean bean) {
             tvReceiverPhone.setOnClickListener(null);
             tvPosterPhone.setOnClickListener(null);
             tvTime.setVisibility(View.GONE);
-            if (Objects.equals(bean.getType(), "EMPLOYEE_SELF")) {
-                // 自揽件
-//                groupCommon.setVisibility(View.GONE);
-                setVisibleCommonView(false);
-                groupMinePickUp.setVisibility(View.VISIBLE);
-                tvMinePickUpExpress.setText(String.format("%s %s", bean.getBusiness(), bean.getTrackingNumber()));
-                tvMinePickUpExpress.setOnLongClickListener(v -> {
-                    ClipboardManager clipboardManager = (ClipboardManager) tvMinePickUpExpress.getContext().getSystemService(
-                            Context.CLIPBOARD_SERVICE);
-                    String copy = bean.getTrackingNumber();
-                    clipboardManager.setPrimaryClip(ClipData.newPlainText(null, copy));
-                    Toast.makeText(tvMinePickUpExpress.getContext().getApplicationContext(),  "复制快递单号成功！", Toast.LENGTH_SHORT).show();
-                    return false;
-                });
-                tvMinePickUpPay.setText(String.format("已收款 %s元", bean.getBudget()));
-                tvMinePickUpTime.setText("入库时间 " + ExpressHelper.getTime(bean.getCreateTime()));
-                tvMark.setTextColor(Color.WHITE);
-                tvMark.setText("自揽件");
-                tvMark.setBackgroundColor(0xFF007BFF);
-            } else {
-                groupMinePickUp.setVisibility(View.GONE);
-//                groupCommon.setVisibility(View.VISIBLE);
-                setVisibleCommonView(true);
-                tvPosterName.setText(bean.getSender());
-                tvPosterPhone.setText(bean.getSenderMobileNumber());
-                tvReceiverName.setText(bean.getAddressee());
-                tvReceiverPhone.setText(bean.getAddresseeMobileNumber());
-                tvReceiverPhone.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        PhoneHelper.callPhone((FragmentActivity) tvReceiverPhone.getContext(), bean.getAddresseeMobileNumber());
-                    }
-                });
-                tvPosterPhone.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        PhoneHelper.callPhone((FragmentActivity) tvPosterPhone.getContext(), bean.getSenderMobileNumber());
-                    }
-                });
-                tvAddress.setText(bean.getSenderAreaName() + bean.getSenderAddress());
-                tvAddTime.setText("入库时间：" + ExpressHelper.getTime(bean.getCreateTime()));
-                tvOrderTime.setText("揽件日期：" + ExpressHelper.getDate(bean.getReceivedDate()));
-
-                if ("NOT_RECEIVED".equals(bean.getState())) {
-                    // 状态：未揽件
-                    // UI上显示“待上门取件”
-                    tvMark.setText("待上门取件");
-                    tvMark.setTextColor(Color.WHITE);
-                    tvMark.setBackgroundColor(0xFFDE1111);
-                    tvPay.setVisibility(View.GONE);
-                    tvTime.setVisibility(View.VISIBLE);
-                    tvTime.setText("预约时间：" + ExpressHelper.formatTime(bean.getReceivingStartTime()) + "~" + ExpressHelper.formatTime(bean.getReceivingEndTime()));
-                    tvExpress.setVisibility(View.GONE);
-                } else if ("RECEIVED".equals(bean.getState())) {
-                    // 状态：已揽件
-                    if ("PAID".equals(bean.getPayState())) {
-                        // 已支付
-                        if ("VERIFIED".equals(bean.getVerifyState())) {
-                            // UI上显示“已寄出”
-                            tvMark.setText("已寄出");
-                            tvMark.setTextColor(Color.WHITE);
-                            tvMark.setBackgroundColor(0xFF999999);
-                            tvPay.setVisibility(View.GONE);
-                            tvTime.setVisibility(View.GONE);
-                            tvExpress.setVisibility(View.VISIBLE);
-                            tvExpress.setText(bean.getBusiness() + " " + bean.getTrackingNumber());
-                        } else {
-                            // UI上显示“用户已支付”
-                            tvMark.setText("用户已支付");
-                            tvMark.setTextColor(0xFFDE1111);
-                            tvMark.setBackgroundColor(0xFFFFE7E7);
-                            tvPay.setVisibility(View.GONE);
-                            tvTime.setVisibility(View.GONE);
-                            tvExpress.setVisibility(View.VISIBLE);
-                            tvExpress.setText(bean.getBusiness() + " " + bean.getTrackingNumber());
-                        }
-                    } else {
-                        // 等待支付
-                        // UI上显示“等待支付”
-                        tvMark.setText("等待支付");
-                        tvMark.setTextColor(Color.WHITE);
-                        tvMark.setBackgroundColor(0xFFFF9F1E);
-                        tvPay.setVisibility(View.VISIBLE);
-                        tvPay.setText("等待用户支付 " + bean.getAmount() + "元");
-                        tvTime.setVisibility(View.GONE);
-                        tvExpress.setVisibility(View.VISIBLE);
-                        tvExpress.setText(bean.getBusiness() + " " + bean.getTrackingNumber());
-                    }
-                } else {
-                    if ("CANCELLED".equals(bean.getState())) {
-                        // 状态：已取消
-                        // UI上显示什么？？
-                        tvMark.setText("已取消");
-                    } else {
-                        // 状态：揽件异常
-                        // UI上显示什么？？
-                        tvMark.setText("异常");
-                    }
-
-                    // UI上显示“已寄出”
-                    tvMark.setTextColor(Color.WHITE);
-                    tvMark.setBackgroundColor(0xFF999999);
-                    tvPay.setVisibility(View.GONE);
-                    tvTime.setVisibility(View.GONE);
-                    tvExpress.setVisibility(View.VISIBLE);
-                    tvExpress.setText(bean.getBusiness() + " " + bean.getTrackingNumber());
+            setVisibleCommonView(false);
+            groupMinePickUp.setVisibility(View.VISIBLE);
+            tvMinePickUpExpress.setText(bean.getRemark());
+            tvReceiverPhone.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    PhoneHelper.callPhone((FragmentActivity) tvReceiverPhone.getContext(), bean.getCustomercontact());
                 }
+            });
+            tvMinePickUpPay.setText("联系人：" + bean.getCustomername());
+            tvMinePickUpTime.setText("联系电话：" + bean.getCustomercontact());
+            tvIsUrgent.setText("是否紧急：" + (bean.getIsurgent().equals("1")?"加急":"否"));
+            tvMark.setTextColor(Color.WHITE);
+            if(bean.getStatus().equals("1")){
+                tvMark.setText("已完成");
+                tvMark.setBackgroundColor(0xFF007BFF);
+            }else{
+                tvMark.setText("待处理");
             }
-
-            if (tvExpress.getVisibility() == View.VISIBLE) {
-                tvExpress.setOnLongClickListener(v -> {
-                    ClipboardManager clipboardManager = (ClipboardManager) tvExpress.getContext().getSystemService(
-                            Context.CLIPBOARD_SERVICE);
-                    String copy = bean.getTrackingNumber();
-                    clipboardManager.setPrimaryClip(ClipData.newPlainText(null, copy));
-                    Toast.makeText(tvExpress.getContext().getApplicationContext(),  "复制快递单号成功！", Toast.LENGTH_SHORT).show();
-                    return false;
-                });
-            }
-
             clRoot.setOnClickListener(v -> {
-                WorkOrderDetailActivity.move((Activity) clRoot.getContext(), bean.getCode(), bean.getTrackingNumber());
+                WorkOrderDetailActivity.move((Activity) clRoot.getContext(), bean);
             });
         }
-
-
         private void setVisibleCommonView(boolean visible) {
             tvPay.setVisibility(visible ? View.VISIBLE : View.GONE);
             tvExpress.setVisibility(visible ? View.VISIBLE : View.GONE);

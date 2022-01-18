@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dispatch.system.R;
 import com.dispatch.system.base.BaseActivity;
-import com.dispatch.system.base.BaseFragment;
-import com.dispatch.system.entity.MinePickUpBean;
-import com.dispatch.system.entity.ReceivingRecordsBean;
+import com.dispatch.system.entity.WorkOrderBean;
 import com.dispatch.system.http.ApiClient;
 import com.dispatch.system.http.MyObserver;
 import com.dispatch.system.module.pick.adapter.WorkOrderAdapter;
@@ -37,7 +35,7 @@ public class WorkOrderActivity extends BaseActivity {
     @BindView(R.id.ivBack)
     View ivBack;
     private WorkOrderAdapter adapter;
-    private List<ReceivingRecordsBean> dataList = new ArrayList<>();
+    private List<WorkOrderBean.DataBean.workOrderBean> dataList = new ArrayList<WorkOrderBean.DataBean.workOrderBean>();
 
     @Override
     protected int bindLayout() {
@@ -64,25 +62,21 @@ public class WorkOrderActivity extends BaseActivity {
         finish();
     }
     public void requestData(boolean isRefresh) {
-        if (isRefresh) {
+        /*if (isRefresh) {
             pageIndex = 1;
-        }
-        ApiClient.getInstance().getMinePickUpListPage("10", String.valueOf(pageIndex),
-                true, new MyObserver<MinePickUpBean>() {
+        }*/
+        ApiClient.getInstance().getWorkOrderListPage("", new MyObserver<WorkOrderBean>() {
                     @Override
                     protected void getDisposable(Disposable d) {
                     }
 
                     @Override
-                    protected void onSuccess(MinePickUpBean minePickUpBean) {
-                        if (isRefresh) {
-                            dataList.clear();
-                        }
-                        List<ReceivingRecordsBean> records = minePickUpBean.getData().getReceivingRecords();
-                        if (records.size() > 0) {
+                    protected void onSuccess(WorkOrderBean workOrderBean) {
+                        dataList.clear();
+                        /*if (records.size() > 0) {
                             pageIndex++;
-                        }
-                        dataList.addAll(records);
+                        }*/
+                        dataList.addAll(workOrderBean.getData().getWorkOrder());
                         adapter.notifyDataSetChanged();
                         refreshLayout.finishRefresh(500);
                         refreshLayout.finishLoadmore(500);

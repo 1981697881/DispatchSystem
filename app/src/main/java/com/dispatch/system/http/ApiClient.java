@@ -28,9 +28,11 @@ import com.dispatch.system.entity.NewListBean;
 import com.dispatch.system.entity.PickUpDetailBean;
 import com.dispatch.system.entity.SearchMemberBean;
 import com.dispatch.system.entity.UploadSignBean;
+import com.dispatch.system.entity.WorkOrderBean;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -332,6 +334,23 @@ public class ApiClient {
                 .compose(schedulersTransform())
                 .subscribe(observer);
     }
+    /**
+     * 我的工单
+     */
+    public void getWorkOrderListPage(String status,
+                                      MyObserver<WorkOrderBean> observer) {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("status", status);
+        System.out.println(jsonObject);
+        RequestBody requestBody = RequestBody.create(
+                MediaType.parse("application/json;charset=UTF-8"), new Gson().toJson(jsonObject));
+
+        apiService
+                .getWorkOrderListPage(getSendHeader(), requestBody)
+                .compose(schedulersTransform())
+                .subscribe(observer);
+    }
 
     /**
      * 查询异常描述模版
@@ -396,6 +415,18 @@ public class ApiClient {
     public void addDeliveryException(String trackingNumber, String exceptionTemplateCode, MyObserver<BaseBean> observer) {
         apiService
                 .addDeliveryException(getSendHeader(), trackingNumber, exceptionTemplateCode)
+                .compose(schedulersTransform())
+                .subscribe(observer);
+    }
+    /**
+     * 工单处理
+     */
+    public void updateWorkOrder(JsonObject jsonObject, MyObserver<BaseBean> observer) {
+        RequestBody requestBody = RequestBody.create(
+                MediaType.parse("application/json;charset=UTF-8"), new Gson().toJson(jsonObject));
+
+        apiService
+                .updateWorkOrder(getSendHeader(), requestBody)
                 .compose(schedulersTransform())
                 .subscribe(observer);
     }
