@@ -67,7 +67,8 @@ public class WorkOrderAdapter extends BaseRvAdapter<WorkOrderAdapter.VH> {
         @BindView(R.id.ivPoster)
         ImageView ivPoster;
         @BindView(R.id.tvIsUrgent)
-        TextView tvIsUrgent;
+        TextView tvIsUrgent;@BindView(R.id.tvIsTime)
+        TextView tvIsTime;
         @BindView(R.id.tvPosterName)
         TextView tvPosterName;
         @BindView(R.id.tvPosterPhone)
@@ -118,20 +119,24 @@ public class WorkOrderAdapter extends BaseRvAdapter<WorkOrderAdapter.VH> {
             tvTime.setVisibility(View.GONE);
             setVisibleCommonView(false);
             groupMinePickUp.setVisibility(View.VISIBLE);
-            tvMinePickUpExpress.setText(bean.getRemark());
+            tvMinePickUpExpress.setText("工单类型：" +(bean.getWorkOrderType()==null?"无":bean.getWorkOrderType()));
             tvReceiverPhone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     PhoneHelper.callPhone((FragmentActivity) tvReceiverPhone.getContext(), bean.getCustomercontact());
                 }
             });
-            tvMinePickUpPay.setText("联系人：" + bean.getCustomername());
-            tvMinePickUpTime.setText("联系电话：" + bean.getCustomercontact());
+            tvMinePickUpPay.setText("联系人：" + (bean.getCustomername()==null?"无":bean.getCustomername()));
+            tvMinePickUpTime.setText("联系电话：" + (bean.getCustomercontact()==null?"无":bean.getCustomercontact()));
             tvIsUrgent.setText("是否紧急：" + (bean.getIsurgent().equals("1")?"加急":"否"));
+            tvIsTime.setText("处理时效：" + (bean.getHandleTime()==null?"无":bean.getHandleTime()));
             tvMark.setTextColor(Color.WHITE);
             if(bean.getStatus().equals("1")){
                 tvMark.setText("已完成");
                 tvMark.setBackgroundColor(0xFF007BFF);
+            } else if(bean.getStatus().equals("2")){
+                tvMark.setText("已反馈");
+                tvMark.setBackgroundColor(0xFF007BCC);
             }else{
                 tvMark.setText("待处理");
             }

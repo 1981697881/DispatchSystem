@@ -246,6 +246,78 @@
                     app:layout_constraintBottom_toBottomOf="@id/tvExpressTip"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tvExpressTip" />
+                <View
+                    android:id="@+id/viewDividerExpress"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="#EAEAEA"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvExpressTip" />
+                <!-- 商品金额 -->
+                <TextView
+                    android:id="@+id/tvGoodPriceTip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:text="商品金额"
+                    android:textColor="#666666"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewDividerExpress" />
+
+                <TextView
+                    android:id="@+id/tvGoodPriceNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:includeFontPadding="false"
+                    android:text="111111111"
+                    android:textColor="#282828"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvGoodPriceTip"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvGoodPriceTip" />
+                <View
+                    android:id="@+id/viewDividerGoodPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="#EAEAEA"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvGoodPriceTip" />
+                <!-- 涉及罚款金额 -->
+                <TextView
+                    android:id="@+id/tvFinePriceTip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="20dp"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:text="涉及罚款金额"
+                    android:textColor="#666666"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/viewDividerGoodPrice" />
+
+                <TextView
+                    android:id="@+id/tvFinePriceNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:includeFontPadding="false"
+                    android:text="111111111"
+                    android:textColor="#282828"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@id/tvFinePriceTip"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvFinePriceTip" />
 
                 <View
                     android:id="@+id/viewDividerExpressNum"
@@ -257,7 +329,7 @@
                     android:background="#EAEAEA"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvExpressTip" />
+                    app:layout_constraintTop_toBottomOf="@id/tvFinePriceTip" />
 
 
                 <!-- 寄单号 -->

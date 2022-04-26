@@ -36,6 +36,11 @@ public class WorkOrderBean extends BaseBean{
             private String customerAddress;
             private String status;
             private String feedback;
+            private String workOrderType;
+            private String handleTime;
+            private String goodPrice;
+            private String finePrice;
+
 
             public void setId(int id) {
                 this.id = id;
@@ -50,8 +55,6 @@ public class WorkOrderBean extends BaseBean{
             public String getWaybillno() {
                 return waybillNo;
             }
-
-
 
             public void setRemark(String remark) {
                 this.remark = remark;
@@ -109,9 +112,36 @@ public class WorkOrderBean extends BaseBean{
                 return status;
             }
 
+            public void setWorkOrderType(String workOrderType) {
+                this.workOrderType = workOrderType;
+            }
+            public String getWorkOrderType() {
+                return workOrderType;
+            }
+
+            public void setHandleTime(String handleTime) {
+                this.handleTime = handleTime;
+            }
+            public String getHandleTime() {
+                return handleTime;
+            }
+
+            public void setGoodPrice(String goodPrice) {
+                this.goodPrice = goodPrice;
+            }
+            public String getGoodPrice() {
+                return goodPrice;
+            }
+            public void setFinePrice(String finePrice) {
+                this.finePrice = finePrice;
+            }
+            public String getFinePrice() {
+                return finePrice;
+            }
             public void setFeedback(String feedback) {
                 this.feedback = feedback;
             }
+
             public String getFeedback() {
                 return feedback;
             }

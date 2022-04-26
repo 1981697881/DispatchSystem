@@ -8,10 +8,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentActivity;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.dispatch.system.R;
 import com.dispatch.system.base.BaseActivity;
+import com.dispatch.system.common.PhoneHelper;
 import com.dispatch.system.entity.BaseBean;
 import com.dispatch.system.entity.WorkOrderBean;
 import com.dispatch.system.http.ApiClient;
@@ -55,6 +57,10 @@ public class WorkOrderDetailActivity extends BaseActivity {
     TextView tvExpressTip;
     @BindView(R.id.tvExpressNum)
     TextView tvExpressNum;
+    @BindView(R.id.tvGoodPriceNum)
+    TextView tvGoodPriceNum;
+    @BindView(R.id.tvFinePriceNum)
+    TextView tvFinePriceNum;
     @BindView(R.id.viewDividerExpressNum)
     View viewDividerExpressNum;
     @BindView(R.id.tvConfirm)
@@ -75,6 +81,8 @@ public class WorkOrderDetailActivity extends BaseActivity {
     private String customerAddress;
     private String status;
     private String feedback;
+    private String goodPrice;
+    private String finePrice;
 
 
     @Override
@@ -97,6 +105,8 @@ public class WorkOrderDetailActivity extends BaseActivity {
         customerAddress = getIntent().getStringExtra("customerAddress");
         status = getIntent().getStringExtra("status");
         feedback = getIntent().getStringExtra("feedback");
+        goodPrice = getIntent().getStringExtra("goodPrice");
+        finePrice = getIntent().getStringExtra("finePrice");
         ivBack.setVisibility(View.VISIBLE);
 
         tvConfirm.setVisibility(View.GONE);
@@ -104,6 +114,10 @@ public class WorkOrderDetailActivity extends BaseActivity {
         clUserInfo.setVisibility(View.GONE);
         if (status.equals("1")) {
             tvStatus.setText("已完成");
+            tvConfirm.setVisibility(View.GONE);
+            tvMessage.setText(feedback);
+        } else if (status.equals("2")) {
+            tvStatus.setText("已反馈");
             tvConfirm.setVisibility(View.GONE);
             tvMessage.setText(feedback);
         } else {
@@ -120,16 +134,24 @@ public class WorkOrderDetailActivity extends BaseActivity {
                 jsonObject.addProperty("customerContact", customerContact);
                 jsonObject.addProperty("customerName", customerName);
                 jsonObject.addProperty("customerAddress", customerAddress);
-                jsonObject.addProperty("status", "1");
+                jsonObject.addProperty("status", "2");
                 jsonObject.addProperty("feedback", tvMessage.getText().toString());
                 request(jsonObject);
             });
         }
         tvPrice.setText(customerName);
         tvCoupon.setText(customerContact);
+        tvCoupon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PhoneHelper.callPhone((FragmentActivity) tvCoupon.getContext(), customerContact);
+            }
+        });
         tvTotal.setText(customerAddress);
         tvExpressNum.setText(waybillNo);
         tvLeaveMessage.setText(remark);
+        tvGoodPriceNum.setText(goodPrice);
+        tvFinePriceNum.setText(finePrice);
     }
     private void request(JsonObject jsonObject) {
         showLoading();
@@ -167,6 +189,8 @@ public class WorkOrderDetailActivity extends BaseActivity {
         intent.putExtra("customerAddress", bean.getCustomeraddress());
         intent.putExtra("status", bean.getStatus());
         intent.putExtra("feedback", bean.getFeedback());
+        intent.putExtra("goodPrice", bean.getGoodPrice());
+        intent.putExtra("finePrice", bean.getFinePrice());
         context.startActivityForResult(intent, 0);
     }
 
